@@ -1,0 +1,20 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
+class ServiceOrder extends Model
+{
+    use HasFactory;
+    protected $table = 'service_orders';
+    protected $primaryKey = 'id';
+    protected $fillable = ['vehiclePlate', 'entryDateTime', 'exitDateTime', 'priceType', 'price', 'userId'];
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'userID', 'id');
+    }
+}
