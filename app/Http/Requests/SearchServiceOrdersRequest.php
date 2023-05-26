@@ -22,15 +22,15 @@ class SearchServiceOrdersRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'plate_number' => 'string|max:7:exists:service_orders,vehiclePlate',
+            'plate_number' => 'nullable|string|max:7',
         ];
     }
 
-    public function messages(){
+    public function messages(): array
+    {
         return [
             'plate_number.string' => 'O campo placa do veículo deve ser do tipo texto',
             'plate_number.max' => 'O campo placa do veículo deve ter no máximo 7 caracteres',
-            'plate_number.exists' => 'O campo placa do veículo não existe em nossa base de dados.',
         ];
     }
 }

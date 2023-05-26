@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\StoreUsersRequest;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\UsersResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -13,7 +15,14 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            $users = User::orderBy('name')->get();
+
+            return UsersResource::collection($users);
+        } catch (\Throwable $th) {
+            
+            return $th->getMessage();
+        }
     }
 
     /**

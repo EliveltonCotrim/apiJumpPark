@@ -18,7 +18,7 @@ return new class extends Migration
             $table->dateTime('exitDateTime')->default('0001-01-01 00:00:00');
             $table->string('priceType', 55);
             $table->decimal('price', 12,2)->default('0.00');
-            $table->unsignedBigInteger('userID')->nullable(false);
+            $table->unsignedBigInteger('userId')->nullable(false);
             $table->timestamps();
 
             $table->foreign('userId')->references('id')->on('users');
