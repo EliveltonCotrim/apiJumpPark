@@ -21,9 +21,18 @@ class ServiceOrdersRepository
 
     public function create($data)
     {
+        $data = [
+            'vehiclePlate' => $data['vehiclePlate'],
+            'entryDateTime' => $data['entryDateTime'],
+            'exitDateTime' => $data['exitDateTime'] ?? '0001-01-01 00:00:00',
+            'priceType' => $data['priceType'],
+            'price' => $data['price'] ?? '0.00',
+            'userId' => $data['userId'],
+        ];
+
         $serviceOrder = $this->model->create($data);
         $serviceOrder = $this->model->with('user')->find($serviceOrder->id);
-        
+
         return $serviceOrder;
     }
 

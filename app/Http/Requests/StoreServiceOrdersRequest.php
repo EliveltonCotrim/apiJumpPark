@@ -26,7 +26,7 @@ class StoreServiceOrdersRequest extends FormRequest
             'entryDateTime' => 'required|date_format:Y-m-d H:i:s',
             'exitDateTime' => 'nullable|date_format:Y-m-d H:i:s',
             'priceType' => 'required|string|max:55',
-            'price' => 'numeric|min:0.00',
+            'price' => 'nullable|numeric',
             'userId' => 'required|integer|exists:users,id'
         ];
     }

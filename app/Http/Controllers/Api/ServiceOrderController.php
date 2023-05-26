@@ -37,7 +37,6 @@ class ServiceOrderController extends Controller
             }
 
             return ServiceOrdersResource::collection($this->serviceOrderRepository->paginateServiceOrders());
-
         } catch (\Throwable $th) {
             return $th->getMessage();
         }
@@ -49,12 +48,12 @@ class ServiceOrderController extends Controller
     public function store(StoreServiceOrdersRequest $request)
     {
         try {
-
             $serviceOrder = $this->serviceOrderRepository->create($request->validated());
 
-            return Response()->json($serviceOrder, 201);
-
+            return Response()->json(['success' => true, 'data' => $serviceOrder], 201);
+            
         } catch (\Throwable $th) {
+
             return $th->getMessage();
         }
     }
